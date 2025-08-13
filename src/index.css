@@ -99,6 +99,10 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     cursor: none;
@@ -133,7 +137,8 @@ All colors MUST be HSL.
     --muted: 220 15% 92%;
     --muted-foreground: 220 8% 35%;
 
-    --accent: 45 95% 65%; /* pastel yellow */
+    --accent: 45 95% 65%;
+    /* pastel yellow */
     --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84% 60%;
@@ -182,7 +187,8 @@ All colors MUST be HSL.
     --muted: 240 10% 14%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 55 100% 60%; /* neon yellow */
+    --accent: 55 100% 60%;
+    /* neon yellow */
     --accent-foreground: 240 10% 6%;
 
     --destructive: 0 70% 50%;
@@ -212,32 +218,75 @@ All colors MUST be HSL.
       0 0 0 2px hsl(var(--border)),
       4px 4px 0 0 hsl(var(--ring) / 0.3);
   }
+
   .pixel-card {
     @apply bg-card text-card-foreground border border-border rounded-sm;
     box-shadow: 0 0 0 2px hsl(var(--border));
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
+
   .pixel-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 0 2px hsl(var(--ring)), 0 8px 24px -8px hsl(var(--ring) / 0.35);
   }
-  .hover-scale { @apply transition-transform duration-200; }
-  .hover-scale:hover { transform: scale(1.05); }
-  .story-link { position: relative; display: inline-block; }
+
+  .hover-scale {
+    @apply transition-transform duration-200;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Apply same scale when a laser hits */
+  .laser-hit {
+    transform: scale(1.05);
+    transition: transform 200ms ease;
+  }
+
+  .story-link {
+    position: relative;
+    display: inline-block;
+  }
+
   .story-link::after {
     content: "";
-    position: absolute; left: 0; bottom: -2px; height: 2px; width: 100%;
-    background: hsl(var(--primary)); transform: scaleX(0); transform-origin: right;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: right;
     transition: transform .3s ease;
   }
-  .story-link:hover::after { transform: scaleX(1); transform-origin: left; }
 
-  .cursor-ship { cursor: url('./assets/spaceship-cursor.png') 16 16, auto; }
-  .cursor-magnify { cursor: url('./assets/magnify-cursor.png') 16 16, zoom-in; }
+  .story-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 
-  .pixel-image { image-rendering: pixelated; }
+  .cursor-ship {
+    cursor: url('./assets/spaceship-cursor.png') 16 16, auto;
+  }
+
+  .cursor-magnify {
+    cursor: url('./assets/magnify-cursor.png') 16 16, zoom-in;
+  }
+
+  .pixel-image {
+    image-rendering: pixelated;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
+  }
 }

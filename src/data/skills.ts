@@ -1,10 +1,29 @@
-export type Skill = { name: string; level: number };
+export type Skill = {
+  name: string;
+  capabilities: string;
+};
 
 export const skills: Skill[] = [
-  { name: "Data Engineering", level: 92 },
-  { name: "ETL / ELT", level: 90 },
-  { name: "SQL", level: 88 },
-  { name: "Python", level: 85 },
-  { name: "Data Visualization", level: 80 },
-  { name: "Cloud (GCP/AWS)", level: 75 },
+  {
+    name: "Programming Languages",
+    capabilities: "Python, Java, Javascript, Typescript, C, R, HTML, CSS",
+  },
+  {
+    name: "ETL/ELT (Extract, Transform, Load)",
+    capabilities:
+      " PostgreSQL, SQL, Datawarehouse, Amazon Redshift, Amazon S3, Matillion, GCP",
+  },
+  {
+    name: "Data Visualization",
+    capabilities: "Tableau, Power BI, Excel, Powerpoint, Google Sheets",
+  },
+  {
+    name: "Web Development",
+    capabilities:
+      "MEAN stack (MongoDB, Express, Angular, Node.js), React, Vite, Tailwind CSS, Shadcn UI, Framer Motion, Framer",
+  },
+  {
+    name: "Version Control",
+    capabilities: "Github, Gitlab, BitBucket",
+  },
 ];

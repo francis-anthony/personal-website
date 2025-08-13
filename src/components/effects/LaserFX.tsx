@@ -202,7 +202,7 @@ export default function LaserFX() {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="fixed inset-0 z-50 pointer-events-none"
+      className="fixed inset-0 z-[9999] pointer-events-none"
     />
   );
 }
