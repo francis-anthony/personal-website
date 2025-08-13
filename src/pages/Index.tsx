@@ -8,12 +8,14 @@ import RetroContact from "@/components/retro/RetroContact";
 import PixelDivider from "@/components/retro/PixelDivider";
 import Starfield from "@/components/effects/Starfield";
 import LaserFX from "@/components/effects/LaserFX";
+import GalacticaCursor from "@/components/effects/GalacticaCursor";
 
 const Index = () => {
   return (
     <div className="relative min-h-screen text-foreground">
       <Starfield />
       <LaserFX />
+      <GalacticaCursor />
       <RetroHeader />
       <main>
         <RetroHero />
