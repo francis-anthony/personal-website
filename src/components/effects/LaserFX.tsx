@@ -18,8 +18,21 @@ export default function LaserFX() {
     const state = {
       width: 0,
       height: 0,
-      lasers: [] as Array<{ x: number; y: number; t: number; ttl: number; dir: number }>,
-      particles: [] as Array<{ x: number; y: number; vx: number; vy: number; life: number; max: number }>,
+      lasers: [] as Array<{
+        x: number;
+        y: number;
+        t: number;
+        ttl: number;
+        dir: number;
+      }>,
+      particles: [] as Array<{
+        x: number;
+        y: number;
+        vx: number;
+        vy: number;
+        life: number;
+        max: number;
+      }>,
       lastTime: 0,
     };
 
@@ -33,11 +46,14 @@ export default function LaserFX() {
       state.height = canvas.height;
     };
 
-    const getVar = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const getVar = (name: string) =>
+      getComputedStyle(document.documentElement).getPropertyValue(name).trim();
     const hsl = (v: string) => `hsl(${getVar(v)})`;
 
     const playShot = () => {
-      if (!audioCtx) audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      if (!audioCtx)
+        audioCtx = new (window.AudioContext ||
+          (window as any).webkitAudioContext)();
       if (!audioCtx) return;
       const t = audioCtx.currentTime;
       // Laser pew: square wave with quick pitch slide
@@ -54,18 +70,24 @@ export default function LaserFX() {
     };
 
     const playExplosion = () => {
-      if (!audioCtx) audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      if (!audioCtx)
+        audioCtx = new (window.AudioContext ||
+          (window as any).webkitAudioContext)();
       if (!audioCtx) return;
       const bufferSize = 0.2; // seconds
       const sampleRate = audioCtx.sampleRate;
       const frameCount = Math.floor(sampleRate * bufferSize);
       const buffer = audioCtx.createBuffer(1, frameCount, sampleRate);
       const data = buffer.getChannelData(0);
-      for (let i = 0; i < frameCount; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / frameCount); // white noise with decay
+      for (let i = 0; i < frameCount; i++)
+        data[i] = (Math.random() * 2 - 1) * (1 - i / frameCount); // white noise with decay
       const src = audioCtx.createBufferSource();
       const gain = audioCtx.createGain();
       gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + bufferSize);
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioCtx.currentTime + bufferSize
+      );
       src.buffer = buffer;
       src.connect(gain).connect(audioCtx.destination);
       src.start();
@@ -76,8 +98,8 @@ export default function LaserFX() {
       const x = (clientX - rect.left) * dpr;
       const y = (clientY - rect.top) * dpr;
 
-      // Laser going upward (classic Galactica style)
-      state.lasers.push({ x, y, t: 0, ttl: 0.15, dir: -1 });
+      // Laser going upward (classic Galactica style) — shorter and snappier
+      state.lasers.push({ x, y, t: 0, ttl: 0.08, dir: -1 });
 
       // Small explosion particles at click point
       const count = 18;
@@ -122,12 +144,14 @@ export default function LaserFX() {
         const L = state.lasers[i];
         L.t += dt;
         const p = Math.min(1, L.t / L.ttl);
-        const len = 160 * (1 - p) * dpr + 60 * dpr;
+        // Shorter beam length
+        const len = (36 * (1 - p) + 24) * dpr;
         const alpha = 1 - p;
         ctx.save();
         ctx.globalCompositeOperation = "lighter";
         ctx.strokeStyle = beamColor.replace(")", ` / ${0.9 * alpha})`);
-        ctx.lineWidth = 3 * dpr;
+        // Thinner beam width
+        ctx.lineWidth = 2 * dpr;
         ctx.beginPath();
         ctx.moveTo(L.x, L.y);
         ctx.lineTo(L.x, L.y + L.dir * len);
@@ -174,5 +198,11 @@ export default function LaserFX() {
     };
   }, [dpr]);
 
-  return <canvas ref={canvasRef} aria-hidden className="fixed inset-0 z-50 pointer-events-none" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="fixed inset-0 z-50 pointer-events-none"
+    />
+  );
 }
