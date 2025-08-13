@@ -6,10 +6,14 @@ import RetroProjects from "@/components/retro/RetroProjects";
 import RetroExperience from "@/components/retro/RetroExperience";
 import RetroContact from "@/components/retro/RetroContact";
 import PixelDivider from "@/components/retro/PixelDivider";
+import Starfield from "@/components/effects/Starfield";
+import LaserFX from "@/components/effects/LaserFX";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="relative min-h-screen text-foreground">
+      <Starfield />
+      <LaserFX />
       <RetroHeader />
       <main>
         <RetroHero />
