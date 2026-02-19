@@ -28,8 +28,7 @@ const Index = () => {
       </main>
       <footer className="py-8 text-center text-sm text-muted-foreground">
         <p className="font-press">
-          © {new Date().getFullYear()} Monash Software Engineering Graduate -
-          ETL Developer - Data Ana
+          © {new Date().getFullYear()} Francis Anthony - Portofolio
         </p>
       </footer>
     </div>
