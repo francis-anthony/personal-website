@@ -14,15 +14,41 @@ export const projects: Project[] = [
     link: "https://posthoc.pathfinding.ai/docs/overview",
   },
   {
-    title: "Data Viz Dashboard",
-    description: "Interactive charts and KPIs with responsive drill-downs.",
-    tech: ["React", "D3", "Supabase"],
-    link: "https://github.com/yourname/data-viz",
+    title: "AI and Analytics for Assessments Research",
+    description:
+      "Conducted statistical and machine learning analyses on SWAN (Students With Additional Needs) assessment data to investigate literacy and thinking skills for students with and without autism.",
+    tech: ["R", "RStudio", "Statistical Analysis", "Machine Learning"],
+    link: "-",
   },
   {
-    title: "Batch Orchestrations",
-    description: "Reliable batch jobs with lineage and retries.",
-    tech: ["Airflow", "Python", "S3"],
-    link: "https://github.com/yourname/batch-orchestration",
+    title: "MMLA and Dashboard on Student Collaboration Data Research",
+    description:
+      "Design and implement an end-to-end Multimodal Learning Analytics (MMLA) pipeline that preprocesses and analyses classroom data using machine learning, and delivers actionable collaboration insights through interactive dashboards.",
+    tech: [
+      "Python",
+      "S3",
+      "PowerBI",
+      "google data studio",
+      "Pythorch",
+      "Numpy",
+      "Pandas",
+      "Scikit-learn",
+    ],
+    link: "-",
+  },
+  {
+    title: "UniHack 2025 – Verum Bias Detection Tool",
+    description:
+      "Built Verum, a Chrome extension that detects and explains bias in online news using an NLP model (roBERTa-base) and GPT-4 Turbo API. Trained on 20K+ labeled articles, the tool provides real-time bias detection and reasoning. Developed as part of UniHack 2025.",
+    tech: [
+      "Python",
+      "Javascript",
+      "GPT-4",
+      "roBERTa",
+      "WebScrapping",
+      "Prompt Engineering",
+      "Chrome Extension Development",
+    ],
+    link: "https://devpost.com/software/verum-54lw1z",
   },
 ];
