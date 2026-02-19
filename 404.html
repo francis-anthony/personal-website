@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/personal-website/" />
+    <script>
+      // For client-side routing: redirect to the correct path
+      var l = window.location;
+      var path = l.pathname.replace(/^\/personal-website\//, '');
+      window.location.replace('/personal-website/' + (path ? ('#/' + path) : ''));
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
